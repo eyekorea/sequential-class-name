@@ -8,7 +8,9 @@ const o = {
     add: false,
     callback: null
 }
-
+async function classAddon(){
+    
+};
 class seqElement {
     constructor(selector) {
         this.elements = document.querySelectorAll(selector);
