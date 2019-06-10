@@ -1,0 +1,49 @@
+.layer{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-color: #eee;
+    display: none;
+    transform: translateX(100%);
+    transition: transform .5s ease, background-color .3s linear;
+    &.ready {
+        display: block;
+    }
+    &.active {
+        transform: translateX(0);
+    }
+    &.effect{
+        background-color: sienna;
+        .text{
+            color: #fff;
+        }
+    }
+    .text{
+        text-align: center;
+        color: #444;
+        font-size: 20px;
+        position: absolute;
+        width: 100%;
+        top: 30%;
+        transition: color .3s linear;
+    }
+    .btn{
+        position: absolute;
+        right: 20px;
+        top: 20px;   
+        z-index: 10;
+        
+    }
+}
+
+.open-btn{
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    transform: translateX(-50%);
+}
