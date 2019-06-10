@@ -14,12 +14,13 @@ async function classAddon(){
 class seqElement {
     constructor(selector) {
         this.elements = document.querySelectorAll(selector);
+        this.timer = null;
     }
-    addClass(delayTime, ...classList) {
-
+    addClass(classList, delayTime) {
+        
     }
-    removeClass(delayTime, ...classList) {
-
+    removeClass(classList, delayTime) {
+        console.log(this.elements);
     }
    
 }
@@ -29,6 +30,8 @@ class seqElement {
     return element;
 }
 
-// var n = seqClass('body');
+var n = seqClass('div');
+
+n.addClass();
 
 export default seqClass;

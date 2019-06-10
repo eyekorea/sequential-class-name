@@ -176,14 +176,17 @@ function () {
     _classCallCheck(this, seqElement);
 
     this.elements = document.querySelectorAll(selector);
+    this.timer = null;
   }
 
   _createClass(seqElement, [{
     key: "addClass",
-    value: function addClass(delayTime) {}
+    value: function addClass(classList, delayTime) {}
   }, {
     key: "removeClass",
-    value: function removeClass(delayTime) {}
+    value: function removeClass(classList, delayTime) {
+      console.log(this.elements);
+    }
   }]);
 
   return seqElement;
@@ -193,12 +196,13 @@ function seqClass() {
   var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "body";
   var element = new seqElement(selector);
   return element;
-} // var n = seqClass('body');
+}
 
-
+var n = seqClass('div');
+n.addClass();
 var _default = seqClass;
 exports.default = _default;
-},{}],"../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -226,7 +230,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59173" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52173" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -401,5 +405,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
+},{}]},{},["../../../../.nvm/versions/node/v10.15.3/lib/node_modules/parcel/src/builtins/hmr-runtime.js","src/index.js"], null)
 //# sourceMappingURL=/src.a2b27638.js.map
