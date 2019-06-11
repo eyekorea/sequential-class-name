@@ -1,5 +1,6 @@
 /**
  * @description sequential-class-name
+ * seqClass( selector, defaultDelayTime );
  */
 
 interface classOptions {

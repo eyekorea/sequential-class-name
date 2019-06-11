@@ -64,3 +64,4 @@ function seqClass(selector = "body", delayTime = 100) {
     return new seqElement(selector, delayTime);
 }
 export default seqClass;
+//# sourceMappingURL=index.js.map

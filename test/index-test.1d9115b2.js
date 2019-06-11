@@ -119,16 +119,27 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"index.ts":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 /**
  * @description sequential-class-name
  */
-
-exports.__esModule = true;
-
 var seqElement =
-/** @class */
+/*#__PURE__*/
 function () {
   function seqElement(selector, defaultDelayTime) {
+    _classCallCheck(this, seqElement);
+
     this.defaultClassOption = {
       delayTime: 100
     };
@@ -139,75 +150,81 @@ function () {
     if (defaultDelayTime) this.defaultClassOption.delayTime = defaultDelayTime;
   }
 
-  seqElement.prototype.addClass = function (classList, option) {
-    this.addClassList = this.addClassList.concat(classList);
-    this.control(this.addClassList, 'add', option);
-    return this;
-  };
-
-  seqElement.prototype.removeClass = function (classList, option) {
-    this.removeClassList = this.removeClassList.concat(classList);
-    this.control(this.removeClassList, 'remove', option);
-    return this;
-  };
-
-  seqElement.prototype.clear = function () {
-    if (this.timer !== null) clearInterval(this.timer);
-    this.timer = null;
-    this.addClassList = [];
-    this.removeClassList = [];
-    return this;
-  };
-
-  seqElement.prototype.setTimer = function (delayTime, fnc) {
-    if (this.timer !== null) clearInterval(this.timer);
-    return setInterval(fnc, delayTime);
-  };
-
-  seqElement.prototype.control = function (classList, work, option) {
-    var _this = this;
-
-    var _option = Object.assign({}, this.defaultClassOption);
-
-    if (option) {
-      Object.assign(_option, option);
+  _createClass(seqElement, [{
+    key: "addClass",
+    value: function addClass(classList, option) {
+      this.addClassList = this.addClassList.concat(classList);
+      this.control(this.addClassList, 'add', option);
+      return this;
     }
+  }, {
+    key: "removeClass",
+    value: function removeClass(classList, option) {
+      this.removeClassList = this.removeClassList.concat(classList);
+      this.control(this.removeClassList, 'remove', option);
+      return this;
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      if (this.timer !== null) clearInterval(this.timer);
+      this.timer = null;
+      this.addClassList = [];
+      this.removeClassList = [];
+      return this;
+    }
+  }, {
+    key: "setTimer",
+    value: function setTimer(delayTime, fnc) {
+      if (this.timer !== null) clearInterval(this.timer);
+      return setInterval(fnc, delayTime);
+    }
+  }, {
+    key: "control",
+    value: function control(classList, work, option) {
+      var _this = this;
 
-    this.timer = this.setTimer(_option.delayTime, function () {
-      var cls = classList.shift();
+      var _option = Object.assign({}, this.defaultClassOption);
 
-      if (!cls) {
-        clearInterval(_this.timer);
-        _this.timer = null;
-        return false;
+      if (option) {
+        Object.assign(_option, option);
       }
 
-      if (classList.length === 0 && _option.callback) {
-        _option.callback();
-      }
+      this.timer = this.setTimer(_option.delayTime, function () {
+        var cls = classList.shift();
 
-      _this.elements.forEach(function (element) {
-        element.classList[work](cls);
+        if (!cls) {
+          clearInterval(_this.timer);
+          _this.timer = null;
+          return false;
+        }
+
+        if (classList.length === 0 && _option.callback) {
+          _option.callback();
+        }
+
+        _this.elements.forEach(function (element) {
+          if (work === 'add') {
+            element.classList.add(cls);
+          } else {
+            element.classList.remove(cls);
+          }
+        });
       });
-    });
-  };
+    }
+  }]);
 
   return seqElement;
 }();
 
-function seqClass(selector, delayTime) {
-  if (selector === void 0) {
-    selector = "body";
-  }
-
-  if (delayTime === void 0) {
-    delayTime = 100;
-  }
-
+function seqClass() {
+  var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "body";
+  var delayTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
   return new seqElement(selector, delayTime);
 }
 
-exports["default"] = seqClass;
+var _default = seqClass;
+exports.default = _default;
 },{}],"index-test.js":[function(require,module,exports) {
 "use strict";
 
@@ -233,7 +250,7 @@ closer.addEventListener('click', function () {
     delayTime: 500
   });
 });
-},{".":"index.ts"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{".":"index.ts"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -261,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56921" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51743" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -436,5 +453,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index-test.js"], null)
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index-test.js"], null)
 //# sourceMappingURL=/index-test.1d9115b2.js.map
