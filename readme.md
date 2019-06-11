@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/eyekorea/sequential-class-name.svg?branch=master)](https://travis-ci.org/eyekorea/sequential-class-name)
+
 # seqClass
 웹 브라우저에서 dom 에 클래스를 순차적으로 넣거나 제거할때 사용할 수 있습니다.
 
