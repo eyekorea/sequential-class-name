@@ -1,0 +1,34 @@
+{
+  "name": "sequential-class-name",
+  "version": "0.0.1-beta.1",
+  "main": "dist/index.js",
+  "repository": "https://eyekorea@github.com/eyekorea/sequential-class-name.git",
+  "bugs": {
+    "url": "https://eyekorea@github.com/eyekorea/sequential-class-name.git/issues",
+    "email": "eyekorea0@gmail.com"
+  },
+  "author": "eyekorea <eyekorea0@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel serve ./src/index.html --port 1111 -d test",
+    "build": "tsc"
+  },
+  "keywords": [
+    "sequential",
+    "class",
+    "className",
+    "sequentialClass",
+    "transitionClass"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "cssnano": "^4.1.10",
+    "less": "^3.9.0",
+    "typescript": "^3.5.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4"
+  }
+}
