@@ -37,7 +37,7 @@ seqClass('.layer', 100).addClass(['ready','active'], {
 
 ### use
 - seqClass(`selector`, `defaultDelayTime`)
-    - `selector` : type[string] , document selector (ex : '.class' , '#id') 
+    - `selector` : type[string] | nodeList , document selector (ex : '.class' , '#id') 
     - `defaultDelayTime` : optional / type[number] / default[100], 기본적으로 클레스를 추가하거나 삭제 할때 지정되는 ms. 
 
 ### methods
