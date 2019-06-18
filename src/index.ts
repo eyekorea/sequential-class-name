@@ -8,14 +8,16 @@ interface classOptions {
     callback? : ()=>void
 }
 
+
+
 class seqElement {
     private timer : any;
     private defaultClassOption:any = { delayTime : 100 };
     elements : NodeListOf<HTMLElement>;
     addClassList: string[] = [];
     removeClassList : string[] = [];
-    constructor(selector: string, defaultDelayTime?: number) {
-        this.elements = document.querySelectorAll(selector);
+    constructor(selector: string|NodeListOf<HTMLElement>, defaultDelayTime?: number) {
+        this.elements = (typeof selector === 'string') ? document.querySelectorAll(selector) : selector;
         this.timer = null;
         if( defaultDelayTime ) this.defaultClassOption.delayTime = defaultDelayTime;   
     }
@@ -56,6 +58,7 @@ class seqElement {
             if( classList.length === 0 && _option.callback ){
                 _option.callback();
             }
+
             this.elements.forEach( element =>{
                 if( work === 'add' ){
                     element.classList.add(cls);
@@ -63,12 +66,18 @@ class seqElement {
                     element.classList.remove(cls);
                 }
             } );
+            
         } );
     }
 }
 
 
-function seqClass(selector:string = "body", delayTime:number = 100):seqElement {
+function seqClass(selector: string|NodeListOf<HTMLElement>= "body", delayTime:number = 100):seqElement {
+    if( typeof selector !== 'string' ){
+        if( selector.constructor !== NodeList ){
+            new Error( 'selector 는 nodeList 이거나 selector 로 지정될 string 이어야 합니다.' );
+        }
+    }
     return new seqElement(selector, delayTime);
 }
 

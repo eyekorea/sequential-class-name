@@ -133,6 +133,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /**
  * @description sequential-class-name
+ * seqClass( selector, defaultDelayTime );
  */
 var seqElement =
 /*#__PURE__*/
@@ -145,7 +146,7 @@ function () {
     };
     this.addClassList = [];
     this.removeClassList = [];
-    this.elements = document.querySelectorAll(selector);
+    this.elements = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
     this.timer = null;
     if (defaultDelayTime) this.defaultClassOption.delayTime = defaultDelayTime;
   }
@@ -220,6 +221,13 @@ function () {
 function seqClass() {
   var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "body";
   var delayTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+
+  if (typeof selector !== 'string') {
+    if (selector.constructor !== NodeList) {
+      new Error('selector 는 nodeList 이거나 selector 로 지정될 string 이어야 합니다.');
+    }
+  }
+
   return new seqElement(selector, delayTime);
 }
 
@@ -234,7 +242,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var opener = document.querySelector('#layerOpener');
 var closer = document.querySelector('#layerCloser');
-var layer = (0, _.default)('.layer');
+var layer = (0, _.default)(document.querySelectorAll('.layer')); // const layer = seqClass('.layer');
+
 opener.addEventListener('click', function () {
   layer.clear();
   layer.addClass(['ready', 'active'], {
@@ -250,7 +259,7 @@ closer.addEventListener('click', function () {
     delayTime: 500
   });
 });
-},{".":"index.ts"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{".":"index.ts"}],"../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -278,7 +287,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51743" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63485" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -453,5 +462,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index-test.js"], null)
+},{}]},{},["../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index-test.js"], null)
 //# sourceMappingURL=/index-test.1d9115b2.js.map

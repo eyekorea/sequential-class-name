@@ -1,12 +1,13 @@
 /**
  * @description sequential-class-name
+ * seqClass( selector, defaultDelayTime );
  */
 class seqElement {
     constructor(selector, defaultDelayTime) {
         this.defaultClassOption = { delayTime: 100 };
         this.addClassList = [];
         this.removeClassList = [];
-        this.elements = document.querySelectorAll(selector);
+        this.elements = (typeof selector === 'string') ? document.querySelectorAll(selector) : selector;
         this.timer = null;
         if (defaultDelayTime)
             this.defaultClassOption.delayTime = defaultDelayTime;
@@ -61,6 +62,11 @@ class seqElement {
     }
 }
 function seqClass(selector = "body", delayTime = 100) {
+    if (typeof selector !== 'string') {
+        if (selector.constructor !== NodeList) {
+            new Error('selector 는 nodeList 이거나 selector 로 지정될 string 이어야 합니다.');
+        }
+    }
     return new seqElement(selector, delayTime);
 }
 export default seqClass;
