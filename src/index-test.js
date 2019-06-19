@@ -2,7 +2,7 @@ import seqClass from '.';
 
 const opener = document.querySelector('#layerOpener');
 const closer = document.querySelector('#layerCloser');
-const layer = seqClass(document.querySelectorAll('.layer'));
+const layer = seqClass(document.querySelector('.layer'));
 // const layer = seqClass('.layer');
 opener.addEventListener('click', ()=>{
     layer.clear();

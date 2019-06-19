@@ -146,7 +146,13 @@ function () {
     };
     this.addClassList = [];
     this.removeClassList = [];
-    this.elements = typeof selector === 'string' ? document.querySelectorAll(selector) : selector;
+
+    if (selector.constructor === NodeList) {
+      this.elements = selector;
+    } else {
+      this.element = selector;
+    }
+
     this.timer = null;
     if (defaultDelayTime) this.defaultClassOption.delayTime = defaultDelayTime;
   }
@@ -204,13 +210,23 @@ function () {
           _option.callback();
         }
 
-        _this.elements.forEach(function (element) {
+        if (_this.elements) {
+          _this.elements.forEach(function (element) {
+            if (work === 'add') {
+              element.classList.add(cls);
+            } else {
+              element.classList.remove(cls);
+            }
+          });
+        }
+
+        if (_this.element) {
           if (work === 'add') {
-            element.classList.add(cls);
+            _this.element.classList.add(cls);
           } else {
-            element.classList.remove(cls);
+            _this.element.classList.remove(cls);
           }
-        });
+        }
       });
     }
   }]);
@@ -222,13 +238,11 @@ function seqClass() {
   var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "body";
   var delayTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
 
-  if (typeof selector !== 'string') {
-    if (selector.constructor !== NodeList) {
-      new Error('selector 는 nodeList 이거나 selector 로 지정될 string 이어야 합니다.');
-    }
+  if (typeof selector === 'string') {
+    return new seqElement(document.querySelectorAll(selector), delayTime);
+  } else {
+    return new seqElement(selector, delayTime);
   }
-
-  return new seqElement(selector, delayTime);
 }
 
 var _default = seqClass;
@@ -242,7 +256,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var opener = document.querySelector('#layerOpener');
 var closer = document.querySelector('#layerCloser');
-var layer = (0, _.default)(document.querySelectorAll('.layer')); // const layer = seqClass('.layer');
+var layer = (0, _.default)(document.querySelector('.layer')); // const layer = seqClass('.layer');
 
 opener.addEventListener('click', function () {
   layer.clear();
@@ -287,7 +301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63485" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62615" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
