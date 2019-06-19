@@ -20,5 +20,5 @@ declare class seqElement {
     private setTimer;
     private control;
 }
-declare function seqClass(selector?: string | NodeListOf<HTMLElement>, delayTime?: number): seqElement;
+declare function seqClass(selector?: string | NodeListOf<HTMLElement> | HTMLElement, delayTime?: number): seqElement;
 export default seqClass;

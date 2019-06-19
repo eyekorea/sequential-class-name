@@ -88,7 +88,7 @@ class seqElement {
 
 
 
-function seqClass(selector: string|NodeListOf<HTMLElement>= "body", delayTime:number = 100):seqElement {
+function seqClass(selector: string|NodeListOf<HTMLElement>|HTMLElement= "body", delayTime:number = 100):seqElement {
     if( typeof selector === 'string' ){
         return new seqElement(document.querySelectorAll(selector), delayTime);
     } else {
