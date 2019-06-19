@@ -13,11 +13,16 @@ interface classOptions {
 class seqElement {
     private timer : any;
     private defaultClassOption:any = { delayTime : 100 };
-    elements : NodeListOf<HTMLElement>;
+    elements : NodeListOf<HTMLElement> | undefined ;
+    element : HTMLElement | undefined;
     addClassList: string[] = [];
     removeClassList : string[] = [];
-    constructor(selector: string|NodeListOf<HTMLElement>, defaultDelayTime?: number) {
-        this.elements = (typeof selector === 'string') ? document.querySelectorAll(selector) : selector;
+    constructor(selector: HTMLElement | NodeListOf<HTMLElement> , defaultDelayTime?: number) {
+        if( selector.constructor === NodeList ){
+            this.elements = selector as NodeListOf<HTMLElement>;
+        } else {
+            this.element = selector as HTMLElement;
+        }
         this.timer = null;
         if( defaultDelayTime ) this.defaultClassOption.delayTime = defaultDelayTime;   
     }
@@ -58,27 +63,37 @@ class seqElement {
             if( classList.length === 0 && _option.callback ){
                 _option.callback();
             }
-
-            this.elements.forEach( element =>{
-                if( work === 'add' ){
-                    element.classList.add(cls);
-                } else {
-                    element.classList.remove(cls);
-                }
-            } );
             
+
+            if( this.elements ){
+                
+                this.elements.forEach( element =>{
+                    if( work === 'add' ){
+                        element.classList.add(cls);
+                    } else {
+                        element.classList.remove(cls);
+                    }
+                } );
+            } 
+            if( this.element ) {
+                if( work === 'add' ){
+                    this.element.classList.add(cls);
+                } else {
+                    this.element.classList.remove(cls);
+                }
+            }
         } );
     }
 }
 
 
+
 function seqClass(selector: string|NodeListOf<HTMLElement>= "body", delayTime:number = 100):seqElement {
-    if( typeof selector !== 'string' ){
-        if( selector.constructor !== NodeList ){
-            new Error( 'selector 는 nodeList 이거나 selector 로 지정될 string 이어야 합니다.' );
-        }
+    if( typeof selector === 'string' ){
+        return new seqElement(document.querySelectorAll(selector), delayTime);
+    } else {
+        return new seqElement(selector, delayTime);
     }
-    return new seqElement(selector, delayTime);
 }
 
 export default seqClass;

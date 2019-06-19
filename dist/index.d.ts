@@ -9,10 +9,11 @@ interface classOptions {
 declare class seqElement {
     private timer;
     private defaultClassOption;
-    elements: NodeListOf<HTMLElement>;
+    elements: NodeListOf<HTMLElement> | undefined;
+    element: HTMLElement | undefined;
     addClassList: string[];
     removeClassList: string[];
-    constructor(selector: string | NodeListOf<HTMLElement>, defaultDelayTime?: number);
+    constructor(selector: HTMLElement | NodeListOf<HTMLElement>, defaultDelayTime?: number);
     addClass(classList: string[] | string, option?: classOptions): this;
     removeClass(classList: string[] | string, option?: classOptions): this;
     clear(): this;

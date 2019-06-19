@@ -7,7 +7,12 @@ class seqElement {
         this.defaultClassOption = { delayTime: 100 };
         this.addClassList = [];
         this.removeClassList = [];
-        this.elements = (typeof selector === 'string') ? document.querySelectorAll(selector) : selector;
+        if (selector.constructor === NodeList) {
+            this.elements = selector;
+        }
+        else {
+            this.element = selector;
+        }
         this.timer = null;
         if (defaultDelayTime)
             this.defaultClassOption.delayTime = defaultDelayTime;
@@ -50,24 +55,34 @@ class seqElement {
             if (classList.length === 0 && _option.callback) {
                 _option.callback();
             }
-            this.elements.forEach(element => {
+            if (this.elements) {
+                this.elements.forEach(element => {
+                    if (work === 'add') {
+                        element.classList.add(cls);
+                    }
+                    else {
+                        element.classList.remove(cls);
+                    }
+                });
+            }
+            if (this.element) {
                 if (work === 'add') {
-                    element.classList.add(cls);
+                    this.element.classList.add(cls);
                 }
                 else {
-                    element.classList.remove(cls);
+                    this.element.classList.remove(cls);
                 }
-            });
+            }
         });
     }
 }
 function seqClass(selector = "body", delayTime = 100) {
-    if (typeof selector !== 'string') {
-        if (selector.constructor !== NodeList) {
-            new Error('selector 는 nodeList 이거나 selector 로 지정될 string 이어야 합니다.');
-        }
+    if (typeof selector === 'string') {
+        return new seqElement(document.querySelectorAll(selector), delayTime);
     }
-    return new seqElement(selector, delayTime);
+    else {
+        return new seqElement(selector, delayTime);
+    }
 }
 export default seqClass;
 //# sourceMappingURL=index.js.map

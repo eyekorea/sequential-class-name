@@ -37,7 +37,7 @@ seqClass('.layer', 100).addClass(['ready','active'], {
 
 ### use
 - seqClass(`selector`, `defaultDelayTime`)
-    - `selector` : type[string] | nodeList , document selector (ex : '.class' , '#id') 
+    - `selector` : type[string] | nodeList | HTMLElement 
     - `defaultDelayTime` : optional / type[number] / default[100], 기본적으로 클레스를 추가하거나 삭제 할때 지정되는 ms. 
 
 ### methods
@@ -89,7 +89,7 @@ npm start
 
 - 이때 display:block 속성으로 변경한 뒤, 약 50~100 ms 이후에 active 클래스를 추가 하면 정상적인 움직임을 줄 수 있습니다.
 ```css
-/* 아래와 같은 작업물은 모션을 기대할 수 없습니다. */
+/* 아래와 같이 block 으로 변경후 transform  으로 모션을 줄 수 있습니다. */
 .element{
     width: 100vw;
     height: 100vh;
